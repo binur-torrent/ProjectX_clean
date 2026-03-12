@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @Binding var notes: [LibraryItem]
+    @Environment(\.modelContext) private var context
     @State private var newName: String = ""
+    
     var body: some View {
         ZStack{
             NavigationStack{
@@ -31,13 +32,7 @@ struct MainView: View {
                     .padding()
                     
                     VStack{
-                        ForEach(notes){i in
-                            OpenNote(
-                                title: i.name,
-                                subtitle:"Last opened \(RelativeDateTimeFormatter().localizedString(for: i.lastOpened, relativeTo: Date()))",
-                                isFolder: i.type == ItemType.folder,
-                            )
-                        }
+                        
                     }
                 }
                 .navigationTitle("Dashboard")

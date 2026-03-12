@@ -11,18 +11,13 @@ import SwiftData
 struct ContentView: View {
     @State private var activeTab: TabModel = .home
     @State private var isTabBarHidden: Bool = false
-    @State private var notes: [LibraryItem] = [
-        LibraryItem(name: "The First NOTE", type: ItemType.note, lastOpened: .now),
-        LibraryItem(name: "The Second NOTE", type: ItemType.note, lastOpened: .now),
-        LibraryItem(name: "The Third NOTE", type: ItemType.folder, lastOpened: .now),
-        LibraryItem(name: "The Third NOTE", type: ItemType.folder, lastOpened: .now)
-    ]
+    
     var body: some View{
         ZStack(alignment: .bottom){
             if #available(iOS 18, *){
                 TabView(selection: $activeTab){
                     Tab.init(value: .home){
-                        MainView(notes: $notes)
+                        MainView()
                             .toolbarVisibility(.hidden, for: .tabBar)
                     }
                     Tab.init(value: .profile){
