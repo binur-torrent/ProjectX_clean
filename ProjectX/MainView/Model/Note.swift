@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-enum FileType{
+enum FileType: String, Codable{
     case pdf, pptx, docx, link, text, image, unknown
     
     var iconName: String {
@@ -24,7 +24,7 @@ enum FileType{
     }
 }
 
-enum ItemType{
+enum ItemType: String, Codable{
     case note, folder
 }
 

@@ -6,40 +6,56 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
+    
     @Environment(\.modelContext) private var context
-    @State private var newName: String = ""
+    @Query private var notes: [NoteItem]
     
     var body: some View {
         ZStack{
-            NavigationStack{
-                ScrollView{
-                    VStack{
-                        HStack{
-                            UploadFileButton(title: "New",
-                                             info: "Any filetype",
-                                             icon: "document.badge.plus")
-                            UploadFileButton(title: "Clear",
-                                             info: "Start from scratch",
-                                             icon:"text.document")
-                        }
+            NavigationStack {
+
+                List {
+
+                    // Section 1
+                    HStack{
+                        UploadFileButton(title: "New",
+                                         info: "Any filetype",
+                                         icon: "document.badge.plus")
+
+                        UploadFileButton(title: "Clear",
+                                         info: "Start from scratch",
+                                         icon:"text.document")
                     }
+
+                    // Section 2
                     HStack{
                         NewFolderButton()
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding()
-                    
-                    VStack{
-                        
+
+                    // Section 3
+                    Button("Add note") {
+                        addNote()
+                    }
+
+                    // Section 4
+                    ForEach(notes) { note in
+                        Text(note.name)
                     }
                 }
+
                 .navigationTitle("Dashboard")
-                .background(Color.white)//primary.opacity(0.07)
-                // scroll view end
-            } // main VStack end
+            }// NavigationStack end
         } // ZStack end
+    }
+    
+    func addNote(){
+        // Create a new node, add it to the data context
+        let note = NoteItem(name: "First note", type: .note, lastOpened: .now)
+        context.insert(note)
     }
 }
 
