@@ -20,8 +20,8 @@ struct MainView: View {
                     HStack{
                         UploadFileButton(title: "New",
                                          info: "Any filetype",
-                                         icon: "document.badge.plus",
-                                         //action: {addNote()}
+                                         icon: "document.badge.plus"
+                                         
                         )
 
                         UploadFileButton(title: "Clear",
@@ -33,15 +33,15 @@ struct MainView: View {
 
                     // Section 2
                     HStack{
-                        NewFolderButton()
+                        NewFolderButton(action: {addFolder()})
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     
                     // Section 3
                     ForEach(folders) { folder in
-                        NavigationLink(folder.name) {
-                            FolderView(folder: folder)
-                        }
+                        OpenNote(title: folder.name,
+                                 subtitle: "Something",
+                                 isFolder: true)
                     }
 
                     
@@ -61,9 +61,9 @@ struct MainView: View {
         context.insert(note)
     }
     
-    func addFolder(name: String) {
+    func addFolder() {
 
-        let folder = Folder(name: name)
+        let folder = Folder(name: "New Folder")
 
         context.insert(folder)
     }

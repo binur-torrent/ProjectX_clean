@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct NewFolderButton: View {
+    var action: () -> Void
+    
     
     var body: some View {
-        Button(action: {print("create new folder")}, label: {
+        Button(action: action, label: {
             Label("New Folder", systemImage: "folder.badge.plus")
         })
         .frame(width: 130, height: 60)
@@ -26,5 +28,5 @@ struct NewFolderButton: View {
 }
 
 #Preview {
-    NewFolderButton()
+    NewFolderButton(action: {print("something")})
 }
