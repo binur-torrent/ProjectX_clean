@@ -27,6 +27,6 @@ struct ProjectXApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: NoteItem.self)
+        .modelContainer(for: Note.self)
     }
 }

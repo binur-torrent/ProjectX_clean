@@ -14,6 +14,8 @@ struct PopoverView: View {
     
     @State private var noteName: String = ""
     
+    var onCreate: (String) -> Void
+    
     @State private var showFileImporter: Bool = false
     @State private var showViewer = false
     @State private var selectedFileURLs: [URL] = []
@@ -71,5 +73,5 @@ struct PopoverView: View {
 }
 
 #Preview {
-    PopoverView()
+    MainView()
 }

@@ -21,6 +21,7 @@ struct NewFolderButton: View {
             RoundedRectangle(cornerRadius: 7)
                 .stroke(Color("secondaryGray"), lineWidth: 0.5)
         }
+        .padding()
     }
 }
 

@@ -29,26 +29,55 @@ enum ItemType: String, Codable{
 }
 
 @Model
-class NoteItem: Identifiable {
+class Attachment: Identifiable {
+
+    var id: UUID
+    var fileURL: URL
+    var type: FileType
     
-    var id: String
-    var name: String
-    var type: ItemType
-    var lastOpened: Date
-    
-    var folderId: UUID?
-    var file: [URL]?
-    var content: String?
-    
-    init(name: String, type: ItemType, lastOpened: Date,
-         folderId: UUID? = nil, file: [URL]? = nil,
-         content: String? = nil, fileTypes: [FileType]? = nil) {
-        
-        self.id = UUID().uuidString
-        self.name = name
+    var note: Note?
+
+    init(fileURL: URL, type: FileType) {
+        self.id = UUID()
+        self.fileURL = fileURL
         self.type = type
-        self.lastOpened = lastOpened
-        self.folderId = folderId
-        self.file = file
+    }
+}
+
+@Model
+class Note: Identifiable {
+
+    var id: UUID
+    var title: String
+    var content: String
+    var createdAt: Date
+    
+    var folder: Folder?
+    
+    @Relationship(deleteRule: .cascade)
+    var attachments: [Attachment]
+
+    init(title: String, content: String = "") {
+        self.id = UUID()
+        self.title = title
+        self.content = content
+        self.createdAt = .now
+        self.attachments = []
+    }
+}
+
+@Model
+class Folder: Identifiable {
+
+    var id: UUID
+    var name: String
+    
+    @Relationship(deleteRule: .cascade)
+    var notes: [Note]
+
+    init(name: String) {
+        self.id = UUID()
+        self.name = name
+        self.notes = []
     }
 }

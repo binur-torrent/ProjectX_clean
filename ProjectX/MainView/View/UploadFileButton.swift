@@ -13,11 +13,15 @@ struct UploadFileButton: View {
     var title: String
     var info: String
     var icon: String
+    //var action: () -> Void
+    //var onCreate: (String) -> Void
     
     @State private var showPopover: Bool = false
     
     var body: some View {
-        Button(action: {showPopover.toggle()}) {
+        Button{
+            showPopover = true
+        } label: {
             HStack(){
                 Image(systemName: icon)
                     .font(.system(size: 30))
@@ -39,7 +43,12 @@ struct UploadFileButton: View {
             }
             .padding(5)
         }
-        .popover(isPresented: $showPopover, content: {PopoverView()})
+        /*.popover(isPresented: $showPopover) {
+            PopoverView { name in
+                onCreate(name)
+                showPopover = false
+            }
+        }*/
         .frame(width: 180, height: 60, alignment: .leading)
         .background(.gray.opacity(0.15))
         .cornerRadius(10)
@@ -50,3 +59,5 @@ struct UploadFileButton: View {
     UploadFileButton(title: "Some Title", info: "exampleexmpla",
                      icon: "sun.max")
 }
+
+/*, action: {print("wronking button")*/
