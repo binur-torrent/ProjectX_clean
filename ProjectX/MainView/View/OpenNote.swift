@@ -7,25 +7,27 @@
 
 import SwiftUI
 
-struct OpenNote: View {
+struct OpenNote<Destination: View>: View { // Added Generic Destination
     var title: String
     var subtitle: String
     var isFolder: Bool = false
+    var destination: Destination // The view to navigate to
     
-    @State var showPopover: Bool = false
+    // var onDelete: () -> Void // Closure to handle delete
+    
     var body: some View {
-        ZStack{
-            Button(action: {print("test")}) {
-                HStack{
-                    Image(systemName: isFolder ? "folder" : "document")
+        ZStack {
+            // 1. The main navigation area
+            NavigationLink(destination: destination) {
+                HStack {
+                    Image(systemName: isFolder ? "folder.fill" : "doc.text.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 30, height: 30)
-                        .font(.system(size: 30))
                         .foregroundColor(Color("bottonPurple"))
                         .padding(6)
                     
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading) {
                         Text(title)
                             .font(.headline)
                             .fontWeight(.semibold)
@@ -33,35 +35,29 @@ struct OpenNote: View {
                         Text(subtitle)
                             .font(.footnote)
                             .foregroundStyle(Color("secondaryGray"))
-                            .padding(.horizontal, 2)
                     }
-                    
                     Spacer()
                 }
                 .padding()
+                .background(Color.gray.opacity(0.15))
+                .cornerRadius(10)
             }
-            .frame(maxWidth: .infinity, maxHeight: 70, alignment: .trailing)
-            .background(.gray.opacity(0.15))
-            .cornerRadius(10)
+            .buttonStyle(.plain) // Keeps the styling from looking like a default blue link
             .padding(.horizontal)
             
-            
-            HStack{
+            // 2. The Delete Button
+            HStack {
                 Spacer()
-                Button(action: {print("delete")}) {
+                Button(action: {print("deleted")}) {
                     Image(systemName: "trash")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 24, height: 24)
+                        .frame(width: 20, height: 20)
                         .foregroundColor(Color("bottonPurple"))
                 }
-                .frame(width: 40, height: 40)
-                .padding(.horizontal, 30)
+                .frame(width: 44, height: 44)
+                .padding(.trailing, 30)
             }
-        } // ZStack end
+        }
     }
-}
-
-#Preview {
-    OpenNote(title: "Title", subtitle: "test test")
 }

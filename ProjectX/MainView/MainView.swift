@@ -38,10 +38,26 @@ struct MainView: View {
                     }
                     
                     // Section 3
-                    ForEach(folders) { folder in
+                    /*ForEach(folders) { folder in
                         OpenNote(title: folder.name,
                                  subtitle: "Something",
-                                 isFolder: true)
+                                 isFolder: true,
+                                 navigation: FolderView(folder: folder)
+                        )
+                        /*
+                        NavigationLink(folder.name) {
+                            FolderView(folder: folder)
+                        }
+                         */
+                    }*/
+                    
+                    ForEach(folders) { folder in
+                        OpenNote(
+                            title: folder.name,
+                            subtitle: "\(folder.notes.count) items",
+                            isFolder: true,
+                            destination: FolderView(folder: folder), // Passing the view here
+                        )
                     }
 
                     
