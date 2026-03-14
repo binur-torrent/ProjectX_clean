@@ -11,10 +11,11 @@ import UniformTypeIdentifiers
 
 struct PopoverView: View {
     
-    
-    @State private var noteName: String = ""
-    
     var onCreate: (String) -> Void
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @Binding var name: String
     
     @State private var showFileImporter: Bool = false
     @State private var showViewer = false
@@ -23,6 +24,9 @@ struct PopoverView: View {
     var body: some View {
         ZStack{
             VStack{
+                TextField("Write your name", text: $name)
+                    .font(.title)
+                    .padding()
                 Button {
                     showFileImporter = true
                 } label: {
@@ -66,6 +70,17 @@ struct PopoverView: View {
                     case .failure(let error): print("File imprter error: \(error)")
                     }
                 }
+                Button{
+                    if !name.trimmingCharacters(in: .whitespaces).isEmpty {
+                        onCreate(name)
+                        name = ""
+                        dismiss()
+                    }
+                }label:{
+                    Text("DONE")
+                }
+                .frame(width: 200, height: 100)
+                .font(Font.largeTitle)
             }
         }
         

@@ -21,7 +21,6 @@ struct MainView: View {
                         UploadFileButton(title: "New",
                                          info: "Any filetype",
                                          icon: "document.badge.plus"
-                                         
                         )
 
                         UploadFileButton(title: "Clear",
@@ -33,7 +32,7 @@ struct MainView: View {
 
                     // Section 2
                     HStack{
-                        NewFolderButton(action: {addFolder()})
+                        NewFolderButton()
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                     
@@ -75,13 +74,6 @@ struct MainView: View {
         note.folder = folder
 
         context.insert(note)
-    }
-    
-    func addFolder() {
-
-        let folder = Folder(name: "New Folder")
-
-        context.insert(folder)
     }
     
     func addAttachment(url: URL, to note: Note) {
