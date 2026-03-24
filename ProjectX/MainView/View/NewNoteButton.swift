@@ -30,7 +30,8 @@ struct NewNoteButton: View {
                     addNote(name: name, folder: folder)
                 },
                 name: $name
-            )        }
+            )
+        }
         .frame(width: 130, height: 60)
         .foregroundStyle(Color("secondaryGray"))
         .background(.gray.opacity(0.15))
