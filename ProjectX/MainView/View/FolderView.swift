@@ -6,19 +6,42 @@
 //
 
 import SwiftUI
-
-import SwiftUI
+import SwiftData
 
 struct FolderView: View {
+    
+    @Environment(\.modelContext) private var context
+    @Query var notes: [Note]
     var folder: Folder
+    
+    @State private var showPopover: Bool = false
+    
     var body: some View {
-        List {
-            ForEach(folder.notes) { note in
-                NavigationLink(note.title) {
-                    NoteView(note: note)
+        
+        
+        ZStack{
+            NavigationStack{
+                ScrollView(.vertical, showsIndicators: false){
+                    NewNoteButton()
+                    
+                    List {
+                        ForEach(folder.notes) { note in
+                            NavigationLink(note.title) {
+                                NoteView(note: note)
+                            }
+                        }
+                    }
+                    .navigationTitle(folder.name)
+                    
                 }
             }
         }
-        .navigationTitle(folder.name)
+
+    }
+    
+    func addNote(name: String, folder: Folder?) {
+        let note = Note(title: name)
+        note.folder = folder
+        context.insert(note)
     }
 }

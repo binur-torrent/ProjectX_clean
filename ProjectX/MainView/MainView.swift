@@ -67,14 +67,6 @@ struct MainView: View {
         } // ZStack end
     }
     
-    func addNote(name: String, folder: Folder?) {
-
-        let note = Note(title: name)
-
-        note.folder = folder
-
-        context.insert(note)
-    }
     
     func addAttachment(url: URL, to note: Note) {
 
