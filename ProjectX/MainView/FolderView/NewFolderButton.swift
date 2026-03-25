@@ -24,7 +24,7 @@ struct NewFolderButton: View {
         }
         .popover(isPresented: $showPopover){
             
-            PopoverView(onCreate: addFolder, name: $name)
+            PopoverFolderView(onCreate: addFolder, name: $name)
         }
         .frame(width: 130, height: 60)
         .foregroundStyle(Color("secondaryGray"))

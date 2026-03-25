@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 import UniformTypeIdentifiers
 
-struct PopoverView: View {
+struct PopoverFolderView: View {
     
     var onCreate: (String) -> Void
     

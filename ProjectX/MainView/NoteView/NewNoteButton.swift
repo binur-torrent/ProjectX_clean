@@ -27,7 +27,7 @@ struct NewNoteButton: View {
         .popover(isPresented: $showPopover){
             PopoverNoteView(
                 onCreate: { name in
-                    addNote(name: name, folder: folder)
+                    DataManager.createNote(name: name, folder: folder, context: context)
                 },
                 name: $name
             )
@@ -42,12 +42,6 @@ struct NewNoteButton: View {
         }
         .padding()
         
-    }
-    
-    func addNote(name: String, folder: Folder?) {
-        let note = Note(title: name)
-        note.folder = folder
-        context.insert(note)
     }
 }
 
