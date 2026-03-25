@@ -29,18 +29,21 @@ enum ItemType: String, Codable{
 }
 
 @Model
-class Attachment: Identifiable {
-
+class NoteContent: Identifiable {
     var id: UUID
-    var fileURL: URL
+    var text: String
+    var isDone: Bool
     var type: FileType
+    var order: Int
     
     var note: Note?
 
-    init(fileURL: URL, type: FileType) {
+    init(text: String, type: FileType = .text, order: Int = 0) {
         self.id = UUID()
-        self.fileURL = fileURL
+        self.text = text
+        self.isDone = false
         self.type = type
+        self.order = order
     }
 }
 
@@ -49,20 +52,17 @@ class Note: Identifiable {
 
     var id: UUID
     var title: String
-    var content: String
     var createdAt: Date
-    
     var folder: Folder?
     
     @Relationship(deleteRule: .cascade)
-    var attachments: [Attachment]
+    var contents: [NoteContent]
 
     init(title: String, content: String = "") {
         self.id = UUID()
         self.title = title
-        self.content = content
         self.createdAt = .now
-        self.attachments = []
+        self.contents = []
     }
 }
 

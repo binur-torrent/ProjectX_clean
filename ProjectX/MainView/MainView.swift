@@ -24,19 +24,6 @@ struct MainView: View {
                     }
                     
                     // Section 3
-                    /*ForEach(folders) { folder in
-                        OpenNote(title: folder.name,
-                                 subtitle: "Something",
-                                 isFolder: true,
-                                 navigation: FolderView(folder: folder)
-                        )
-                        /*
-                        NavigationLink(folder.name) {
-                            FolderView(folder: folder)
-                        }
-                         */
-                    }*/
-                    
                     ForEach(folders) { folder in
                         OpenNote(
                             title: folder.name,
@@ -53,19 +40,6 @@ struct MainView: View {
             }
             // NavigationStack end
         } // ZStack end
-    }
-    
-    
-    func addAttachment(url: URL, to note: Note) {
-
-        let file = Attachment(
-            fileURL: url,
-            type: .pdf
-        )
-
-        file.note = note
-
-        context.insert(file)
     }
 }
 

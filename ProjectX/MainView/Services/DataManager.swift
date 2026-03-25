@@ -20,11 +20,6 @@ class DataManager {
         context.insert(note)
     }
     
-    static func addAttachment(url: URL, to note: Note, context: ModelContext) {
-        let file = Attachment(fileURL: url, type: .unknown)
-        file.note = note
-        context.insert(file)
-    }
     
     static func deleteFolder(_ folder: Folder, context: ModelContext) {
         context.delete(folder)

@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct NoteView: View {
-    var note: Note
+    @State var note: Note
+    
     var body: some View {
         VStack {
             Text(note.title)
                 .font(.title)
-            TextEditor(text: .constant(note.content))
-                .padding()
-            List {
-                ForEach(note.attachments) { file in
-                    Text(file.fileURL.lastPathComponent)
+            ForEach($note.contents, id: \.self) { $content in
+                HStack{
+                    switch content.type {
+                    case FileType.pdf: Text("Something")
+                    case FileType.docx: Text("Something2")
+                    default:
+                        TextField("Plain text...", text: $content.text)
+                    }
                 }
             }
+            .padding()
         }
         .navigationTitle("Note")
     }

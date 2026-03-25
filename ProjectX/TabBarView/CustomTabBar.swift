@@ -68,7 +68,7 @@ struct CustomTabBar: View {
                 }
             } label: {
                 MorphingSymbolView(
-                    symbol: activeTab == .home ? "person.fill" : "mic.fill",
+                    symbol: activeTab == .home ? "sparkles.2" : "gearshape.fill",
                     config: .init(
                         font: .title3,
                         frame: .init(width: 42, height: 42),
