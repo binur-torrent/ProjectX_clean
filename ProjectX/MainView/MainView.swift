@@ -17,19 +17,6 @@ struct MainView: View {
         ZStack{
             NavigationStack {
                 ScrollView{
-                    HStack{
-                        UploadFileButton(title: "New",
-                                         info: "Any filetype",
-                                         icon: "document.badge.plus"
-                        )
-
-                        UploadFileButton(title: "Clear",
-                                         info: "Start from scratch",
-                                         icon:"text.document",
-                                         //action: {print("folder is created")}
-                        )
-                    }
-
                     // Section 2
                     HStack{
                         NewFolderButton()
@@ -56,6 +43,7 @@ struct MainView: View {
                             subtitle: "\(folder.notes.count) items",
                             isFolder: true,
                             destination: FolderView(folder: folder), // Passing the view here
+                            action: {DataManager.deleteFolder(_: folder, context: context)}
                         )
                     }
 

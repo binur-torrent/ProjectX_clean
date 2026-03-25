@@ -35,7 +35,8 @@ struct FolderView: View {
                         OpenNote(title: note.title,
                                  subtitle: note.createdAt.formatted(date: .abbreviated, time: .omitted),
                                  isFolder: false,
-                                 destination: HomeView())
+                                 destination: HomeView(),
+                                 action: {DataManager.deleteNote(_: note, context: context)})
                     }
                 }
             }

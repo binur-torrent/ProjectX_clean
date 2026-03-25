@@ -60,4 +60,3 @@ struct UploadFileButton: View {
                      icon: "sun.max")
 }
 
-/*, action: {print("wronking button")*/

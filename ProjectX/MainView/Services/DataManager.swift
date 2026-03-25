@@ -25,4 +25,12 @@ class DataManager {
         file.note = note
         context.insert(file)
     }
+    
+    static func deleteFolder(_ folder: Folder, context: ModelContext) {
+        context.delete(folder)
+    }
+    
+    static func deleteNote(_ note: Note, context: ModelContext) {
+        context.delete(note)
+    }
 }

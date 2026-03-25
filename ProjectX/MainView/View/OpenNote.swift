@@ -12,6 +12,7 @@ struct OpenNote<Destination: View>: View { // Added Generic Destination
     var subtitle: String
     var isFolder: Bool = false
     var destination: Destination // The view to navigate to
+    var action: () -> Void
     
     // var onDelete: () -> Void // Closure to handle delete
     
@@ -48,7 +49,7 @@ struct OpenNote<Destination: View>: View { // Added Generic Destination
             // 2. The Delete Button
             HStack {
                 Spacer()
-                Button(action: {print("deleted")}) {
+                Button(action: action) {
                     Image(systemName: "trash")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
