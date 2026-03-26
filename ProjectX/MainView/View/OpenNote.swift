@@ -25,7 +25,7 @@ struct OpenNote<Destination: View>: View { // Added Generic Destination
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 30, height: 30)
-                        .foregroundColor(Color("bottonPurple"))
+                        .foregroundColor(Color("buttonPurple"))
                         .padding(6)
                     
                     VStack(alignment: .leading) {
@@ -54,7 +54,7 @@ struct OpenNote<Destination: View>: View { // Added Generic Destination
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 20, height: 20)
-                        .foregroundColor(Color("bottonPurple"))
+                        .foregroundColor(Color("buttonPurple"))
                 }
                 .frame(width: 44, height: 44)
                 .padding(.trailing, 30)

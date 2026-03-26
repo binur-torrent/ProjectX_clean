@@ -35,13 +35,13 @@ struct PopoverFolderView: View {
                     TextField("", text: $name)
                         .padding(.leading)
                         .frame(height: 60).focused($isTyping)
-                        .background(isTyping ? Color("bottonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
+                        .background(isTyping ? Color("buttonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
                         .padding()
                         .autocorrectionDisabled()
                     Text("Frist Name")
                         .padding(.horizontal, 5)
                         .background(.white.opacity(isTyping || !name.isEmpty ? 1 : 0))
-                        .foregroundStyle(isTyping || !name.isEmpty ? Color("bottonPurple") : Color("secondaryGray"))
+                        .foregroundStyle(isTyping || !name.isEmpty ? Color("buttonPurple") : Color("secondaryGray"))
                         .padding(.leading, 30).offset(y: isTyping || !name.isEmpty ? -30 : 0)
                 }
                 .animation(.linear(duration: 0.2), value: isTyping)
@@ -57,7 +57,9 @@ struct PopoverFolderView: View {
                     Text("Create Folder")
                 }
                 .frame(width: 370, height: 60)
-                .background(name.isEmpty ? Color("bottonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
+                .foregroundStyle(.white)
+                .background(!name.isEmpty ? Color("buttonPurple") : Color("buttonPurpleSecond"), in: RoundedRectangle(cornerRadius: 10))
+                
             }
         }
         

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomTabBar: View {
     var activeForeground: Color = .white
-    var activeBackground: Color = .blue
+    var activeBackground: Color = Color("buttonPurple")
     @Binding var activeTab: TabModel
     @Namespace private var animation
     var body: some View {

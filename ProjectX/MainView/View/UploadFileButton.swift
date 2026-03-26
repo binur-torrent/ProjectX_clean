@@ -25,7 +25,7 @@ struct UploadFileButton: View {
             HStack(){
                 Image(systemName: icon)
                     .font(.system(size: 30))
-                    .foregroundColor(Color("bottonPurple"))
+                    .foregroundColor(Color("buttonPurple"))
                     .padding(6)
                 VStack(alignment: .leading){
                     Text(title)
