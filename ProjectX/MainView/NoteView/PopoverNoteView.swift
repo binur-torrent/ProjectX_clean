@@ -22,18 +22,33 @@ struct PopoverNoteView: View {
     @State private var showViewer = false
     @State private var selectedFileURLs: [URL] = []
     
+    @FocusState private var isTyping: Bool
+    
     var body: some View {
         ZStack{
             VStack{
-                TextField("Write your name", text: $name)
-                    .font(.title)
-                    .padding()
+                ZStack(alignment: .leading){
+                    TextField("", text: $name)
+                        .padding(.leading)
+                        .frame(height: 60).focused($isTyping)
+                        .background(isTyping ? Color("bottonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
+                        .padding()
+                        .autocorrectionDisabled()
+                    Text("Frist Name")
+                        .padding(.horizontal, 5)
+                        .background(.white.opacity(isTyping || !name.isEmpty ? 1 : 0))
+                        .foregroundStyle(isTyping || !name.isEmpty ? Color("bottonPurple") : Color("secondaryGray"))
+                        .padding(.leading, 30).offset(y: isTyping || !name.isEmpty ? -30 : 0)
+                }
+                .animation(.linear(duration: 0.2), value: isTyping)
+                
+                
                 Button {
                     showFileImporter = true
                 } label: {
                     Label("Choose file to import", systemImage: "doc.circle")
-                        .font(Font.title.bold())
-                        .frame(width: 300, height: 100)
+                        .font(.title)
+                        .frame(width: 370, height: 80)
                         .foregroundStyle(.white)
                         .background(Color.black)
                         .cornerRadius(20)
@@ -78,10 +93,10 @@ struct PopoverNoteView: View {
                         dismiss()
                     }
                 }label:{
-                    Text("DONE")
+                    Text("Create Folder")
                 }
-                .frame(width: 200, height: 100)
-                .font(Font.largeTitle)
+                .frame(width: 370, height: 60)
+                .background(name.isEmpty ? Color("bottonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
             }
         }
         

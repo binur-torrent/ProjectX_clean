@@ -26,6 +26,11 @@ struct PopoverFolderView: View {
     var body: some View {
         ZStack{
             VStack{
+                Text("Create a Folder")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.black)
+                
                 ZStack(alignment: .leading){
                     TextField("", text: $name)
                         .padding(.leading)
@@ -51,7 +56,7 @@ struct PopoverFolderView: View {
                 }label:{
                     Text("Create Folder")
                 }
-                .frame(height: 80)
+                .frame(width: 370, height: 60)
                 .background(name.isEmpty ? Color("bottonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
             }
         }
