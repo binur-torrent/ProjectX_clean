@@ -18,29 +18,16 @@ struct PopoverNoteView: View {
     
     @Binding var name: String
     
+    @State private var link: String = ""
+    
     @State private var showFileImporter: Bool = false
     @State private var showViewer = false
     @State private var selectedFileURLs: [URL] = []
     
-    @FocusState private var isTyping: Bool
-    
     var body: some View {
         ZStack{
             VStack{
-                ZStack(alignment: .leading){
-                    TextField("", text: $name)
-                        .padding(.leading)
-                        .frame(height: 60).focused($isTyping)
-                        .background(isTyping ? Color("bottonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
-                        .padding()
-                        .autocorrectionDisabled()
-                    Text("Frist Name")
-                        .padding(.horizontal, 5)
-                        .background(.white.opacity(isTyping || !name.isEmpty ? 1 : 0))
-                        .foregroundStyle(isTyping || !name.isEmpty ? Color("buttonPurple") : Color("secondaryGray"))
-                        .padding(.leading, 30).offset(y: isTyping || !name.isEmpty ? -30 : 0)
-                }
-                .animation(.linear(duration: 0.2), value: isTyping)
+                textInputField(title: "First Name", name: $name)
                 
                 
                 Button {
@@ -86,6 +73,8 @@ struct PopoverNoteView: View {
                     case .failure(let error): print("File imprter error: \(error)")
                     }
                 }
+                textInputField(title: "or Link to past", name: $link)
+                
                 Button{
                     if !name.trimmingCharacters(in: .whitespaces).isEmpty {
                         onCreate(name)
@@ -99,7 +88,30 @@ struct PopoverNoteView: View {
                 .background(name.isEmpty ? Color("buttonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
             }
         }
-        
+    }
+}
+
+struct textInputField: View{
+    let title: String
+    @Binding var name: String
+    
+    @FocusState private var isTyping: Bool
+    
+    var body: some View{
+        ZStack(alignment: .leading){
+            TextField("", text: $name)
+                .padding(.leading)
+                .frame(height: 60).focused($isTyping)
+                .background(isTyping ? Color("buttonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
+                .padding()
+                .autocorrectionDisabled()
+            Text(title)
+                .padding(.horizontal, 5)
+                .background(.white.opacity(isTyping || !name.isEmpty ? 1 : 0))
+                .foregroundStyle(isTyping || !name.isEmpty ? Color("buttonPurple") : Color("secondaryGray"))
+                .padding(.leading, 30).offset(y: isTyping || !name.isEmpty ? -30 : 0)
+        }
+        .animation(.linear(duration: 0.2), value: isTyping)
     }
 }
 
