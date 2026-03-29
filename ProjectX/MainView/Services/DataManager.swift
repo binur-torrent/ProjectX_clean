@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import Supabase
 
 class DataManager {
     static func createFolder(name: String, context: ModelContext) {
@@ -27,5 +28,19 @@ class DataManager {
     
     static func deleteNote(_ note: Note, context: ModelContext) {
         context.delete(note)
+    }
+    
+    static func insertProfile(_ profile: Profile) async throws {
+        try await client
+            .from("profiles")
+            .insert(profile)
+            .execute()
+    }
+    static func updateProfile(_ profile: Profile, column: String, to value: String) async throws {
+        try await client
+            .from("profiles")
+            .update([column: value])
+            .eq("id", value: profile.id)
+            .execute()
     }
 }
