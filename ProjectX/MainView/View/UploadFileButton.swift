@@ -43,12 +43,6 @@ struct UploadFileButton: View {
             }
             .padding(5)
         }
-        /*.popover(isPresented: $showPopover) {
-            PopoverView { name in
-                onCreate(name)
-                showPopover = false
-            }
-        }*/
         .frame(width: 180, height: 60, alignment: .leading)
         .background(.gray.opacity(0.15))
         .cornerRadius(10)
