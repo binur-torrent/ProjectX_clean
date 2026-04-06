@@ -52,6 +52,7 @@ class Note: Identifiable {
 
     var id: UUID
     var title: String
+    var bodyText: String = ""
     var createdAt: Date
     var folder: Folder?
     

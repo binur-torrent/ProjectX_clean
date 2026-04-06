@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		510F2A452F83F9FF007EF00E /* Textual in Frameworks */ = {isa = PBXBuildFile; productRef = 510F2A442F83F9FF007EF00E /* Textual */; };
 		51DB06F72F77DB9A0070B417 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 51DB06F62F77DB9A0070B417 /* Auth */; };
 		51DB06F92F77DB9A0070B417 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 51DB06F82F77DB9A0070B417 /* Functions */; };
 		51DB06FB2F77DB9A0070B417 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 51DB06FA2F77DB9A0070B417 /* PostgREST */; };
@@ -66,6 +67,7 @@
 				51DB07012F77DB9A0070B417 /* Supabase in Frameworks */,
 				51DB06F72F77DB9A0070B417 /* Auth in Frameworks */,
 				51DB06FF2F77DB9A0070B417 /* Storage in Frameworks */,
+				510F2A452F83F9FF007EF00E /* Textual in Frameworks */,
 				51DB06FD2F77DB9A0070B417 /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +135,7 @@
 				51DB06FC2F77DB9A0070B417 /* Realtime */,
 				51DB06FE2F77DB9A0070B417 /* Storage */,
 				51DB07002F77DB9A0070B417 /* Supabase */,
+				510F2A442F83F9FF007EF00E /* Textual */,
 			);
 			productName = ProjectX;
 			productReference = 518E55C32F614BBE008D79FD /* ProjectX.app */;
@@ -218,6 +221,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				51DB06F52F77DB9A0070B417 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				510F2A432F83F9FF007EF00E /* XCRemoteSwiftPackageReference "textual" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 518E55C42F614BBE008D79FD /* Products */;
@@ -596,6 +600,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		510F2A432F83F9FF007EF00E /* XCRemoteSwiftPackageReference "textual" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/textual";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
 		51DB06F52F77DB9A0070B417 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
@@ -607,6 +619,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		510F2A442F83F9FF007EF00E /* Textual */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 510F2A432F83F9FF007EF00E /* XCRemoteSwiftPackageReference "textual" */;
+			productName = Textual;
+		};
 		51DB06F62F77DB9A0070B417 /* Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 51DB06F52F77DB9A0070B417 /* XCRemoteSwiftPackageReference "supabase-swift" */;

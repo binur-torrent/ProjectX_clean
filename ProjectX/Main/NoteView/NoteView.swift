@@ -27,5 +27,8 @@ struct NoteView: View {
             .padding()
         }
         .navigationTitle("Note")
+        
     }
+    
 }
+
