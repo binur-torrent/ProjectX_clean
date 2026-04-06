@@ -9,20 +9,20 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var name: String = ""
-    @State private var secondName: String = ""
+    @State private var mail: String = ""
+    @State private var password: String = ""
     
     
     var body: some View {
         ZStack{
             VStack{
-                Text("Sign in to App")
+                Text("Sign In to App")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundStyle(.black)
                 
-                DataInputRow(name: $name, text: "Your name")
-                DataInputRow(name: $secondName, text: "Second name")
+                DataInputRow(name: $mail, text: "Your name")
+                DataInputRow(name: $password, text: "Second name")
                 
             }
         }

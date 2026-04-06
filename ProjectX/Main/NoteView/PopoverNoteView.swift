@@ -27,8 +27,7 @@ struct PopoverNoteView: View {
     var body: some View {
         ZStack{
             VStack{
-                textInputField(title: "First Name", name: $name)
-                
+                DataInputRow(name: $name, text: "Note Name")
                 
                 Button {
                     showFileImporter = true
@@ -73,7 +72,7 @@ struct PopoverNoteView: View {
                     case .failure(let error): print("File imprter error: \(error)")
                     }
                 }
-                textInputField(title: "or Link to past", name: $link)
+                DataInputRow(name: $link, text: "Your link")
                 
                 Button{
                     if !name.trimmingCharacters(in: .whitespaces).isEmpty {
@@ -88,30 +87,6 @@ struct PopoverNoteView: View {
                 .background(name.isEmpty ? Color("buttonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
             }
         }
-    }
-}
-
-struct textInputField: View{
-    let title: String
-    @Binding var name: String
-    
-    @FocusState private var isTyping: Bool
-    
-    var body: some View{
-        ZStack(alignment: .leading){
-            TextField("", text: $name)
-                .padding(.leading)
-                .frame(height: 60).focused($isTyping)
-                .background(isTyping ? Color("buttonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
-                .padding()
-                .autocorrectionDisabled()
-            Text(title)
-                .padding(.horizontal, 5)
-                .background(.white.opacity(isTyping || !name.isEmpty ? 1 : 0))
-                .foregroundStyle(isTyping || !name.isEmpty ? Color("buttonPurple") : Color("secondaryGray"))
-                .padding(.leading, 30).offset(y: isTyping || !name.isEmpty ? -30 : 0)
-        }
-        .animation(.linear(duration: 0.2), value: isTyping)
     }
 }
 

@@ -21,8 +21,6 @@ struct PopoverFolderView: View {
     @State private var showViewer = false
     @State private var selectedFileURLs: [URL] = []
     
-    @FocusState private var isTyping: Bool
-    
     var body: some View {
         ZStack{
             VStack{
@@ -31,20 +29,7 @@ struct PopoverFolderView: View {
                     .fontWeight(.bold)
                     .foregroundStyle(.black)
                 
-                ZStack(alignment: .leading){
-                    TextField("", text: $name)
-                        .padding(.leading)
-                        .frame(height: 60).focused($isTyping)
-                        .background(isTyping ? Color("buttonPurple") : Color("secondaryGray"),  in: RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2))
-                        .padding()
-                        .autocorrectionDisabled()
-                    Text("Frist Name")
-                        .padding(.horizontal, 5)
-                        .background(.white.opacity(isTyping || !name.isEmpty ? 1 : 0))
-                        .foregroundStyle(isTyping || !name.isEmpty ? Color("buttonPurple") : Color("secondaryGray"))
-                        .padding(.leading, 30).offset(y: isTyping || !name.isEmpty ? -30 : 0)
-                }
-                .animation(.linear(duration: 0.2), value: isTyping)
+                DataInputRow(name: $name, text: "Folder Name")
                 
                 
                 Button{
