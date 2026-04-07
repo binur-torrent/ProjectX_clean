@@ -7,29 +7,32 @@
 
 import Foundation
 import Supabase
+import SwiftUI
+import Combine
 
-class AuthViewModel{ // should be ObservableObject
+@MainActor
+class AuthViewModel: ObservableObject {
+
+    @Published var session: Session?
     
-    static func insertProfile(_ user: User) async throws {
-        try await supabase
-            .from("users")
-            .insert(user)
-            .execute()
+    init() {
+        Task {
+            await checkSession()
+        }
     }
     
-    static func updateProfile(_ user: User, column: String, to value: String) async throws {
-        try await supabase
-            .from("users")
-            .update([column: value])
-            .eq("id", value: user.id)
-            .execute()
+    func checkSession() async {
+        do {
+            let session = try await supabase.auth.session
+            self.session = session
+            print("Logged in as:", session.user.id)
+        } catch {
+            self.session = nil
+            print("No active session")
+        }
     }
     
-    static func deleteProfile(_ user: User) async throws {
-        try await supabase
-            .from("users")
-            .delete()
-            .eq("id", value: user.id)
-            .execute()
+    var isAuthenticated: Bool {
+        session != nil && session?.isExpired == false
     }
 }

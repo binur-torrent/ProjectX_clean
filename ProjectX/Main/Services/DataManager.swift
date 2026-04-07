@@ -29,4 +29,5 @@ class DataManager {
     static func deleteNote(_ note: Note, context: ModelContext) {
         context.delete(note)
     }
+    
 }

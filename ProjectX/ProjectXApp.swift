@@ -25,8 +25,15 @@ struct ProjectXApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if AuthViewModel().isAuthenticated {
+                ContentView()
+            } else {
+                NavigationStack {
+                    LoginView()
+                }
+            }
         }
         .modelContainer(for: Note.self)
     }
+    
 }
